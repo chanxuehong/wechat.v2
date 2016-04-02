@@ -19,21 +19,15 @@ type TemplateMessage struct {
 }
 
 type Template struct {
-	TemplateID      string `json:"template_id"`
-	Title           string `json:"title"`
-	PrimaryIndustry string `json:"primary_industry"`
-	DeputyIndustry  string `json:"deputy_industry"`
-	Content         string `json:"content"`
-	Example         string `json:"example"`
+	TemplateId      string `json:"template_id"`      //模板ID
+	Title           string `json:"title"`            //模板标题
+	PrimaryIndustry string `json:"primary_industry"` //模板所属行业的一级行业
+	DeputyIndustry  string `json:"deputy_industry"`  //模板所属行业的二级行业
+	Content         string `json:"content"`          //模板内容
+	Example         string `json:"example"`          //模板示例
 }
 
-type IndustryInfo struct {
-	PrimaryIndustry struct {
-		FirstClass  string `json:"first_class"`
-		SecondClass string `json:"second_class"`
-	} `json:"primary_industry"`
-	SecondaryIndustry struct {
-		FirstClass  string `json:"first_class"`
-		SecondClass string `json:"second_class"`
-	} `json:"secondary_industry"`
+type Industry struct {
+	FirstClass  string `json:"first_class"`
+	SecondClass string `json:"second_class"`
 }

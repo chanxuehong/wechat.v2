@@ -100,10 +100,11 @@ func (clt *Client) Send(msg *TemplateMessage) (msgid int64, err error) {
 }
 
 // 获取设置的行业信息
-func (clt *Client) GetIndustry() (industry IndustryInfo, err error) {
+func (clt *Client) GetIndustry() (primaryIndustry, secondaryIndustry Industry, err error) {
 	var result struct {
 		mp.Error
-		IndustryInfo
+		PrimaryIndustry   Industry `json:"primary_industry"`
+		SecondaryIndustry Industry `json:"secondary_industry"`
 	}
 
 	incompleteURL := "https://api.weixin.qq.com/cgi-bin/template/get_industry?access_token="
@@ -115,12 +116,13 @@ func (clt *Client) GetIndustry() (industry IndustryInfo, err error) {
 		err = &result.Error
 		return
 	}
-	industry = result.IndustryInfo
+	primaryIndustry = result.PrimaryIndustry
+	secondaryIndustry = result.SecondaryIndustry
 	return
 }
 
 // 获取模板列表
-func (clt *Client) GetAllTemplate() (templateList []Template, err error) {
+func (clt *Client) GetAllPrivateTemplate() (templateList []Template, err error) {
 	var result struct {
 		mp.Error
 		TemplateList []Template `json:"template_list"`
@@ -140,7 +142,7 @@ func (clt *Client) GetAllTemplate() (templateList []Template, err error) {
 }
 
 // 删除模板
-func (clt *Client) DeleteTemplate(templateID string) (err error) {
+func (clt *Client) DeletePrivateTemplate(templateID string) (err error) {
 	if templateID == "" {
 		err = errors.New("empty templateID")
 		return

@@ -1,8 +1,9 @@
 # wechat SDK for golang
+此为v1版本, v2请移步到 https://github.com/chanxuehong/wechat.v2
 
 ## 鸡蛋和鸡蛋糕，需要的联系我
 * 鸡蛋，30个58元（江浙沪皖包邮） [点击查看详细信息](http://7xrla0.com1.z0.glb.clouddn.com/egg.html)  
-* 鸡蛋糕，20元一斤 [点击查看详细信息](http://7xrla0.com1.z0.glb.clouddn.com/egg2.html)  
+* 鸡蛋糕，3斤60元（江浙沪皖包邮） [点击查看详细信息](http://7xrla0.com1.z0.glb.clouddn.com/egg2.html)  
 
 ![个人微信号](https://github.com/chanxuehong/wechat/blob/master/weixin_qrcode.png)
 

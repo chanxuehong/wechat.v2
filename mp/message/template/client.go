@@ -98,3 +98,73 @@ func (clt *Client) Send(msg *TemplateMessage) (msgid int64, err error) {
 	msgid = result.MsgId
 	return
 }
+
+// 获取设置的行业信息
+func (clt *Client) GetIndustry() (primaryIndustry, secondaryIndustry Industry, err error) {
+	var result struct {
+		mp.Error
+		PrimaryIndustry   Industry `json:"primary_industry"`
+		SecondaryIndustry Industry `json:"secondary_industry"`
+	}
+
+	incompleteURL := "https://api.weixin.qq.com/cgi-bin/template/get_industry?access_token="
+	if err = ((*mp.Client)(clt)).GetJSON(incompleteURL, &result); err != nil {
+		return
+	}
+
+	if result.ErrCode != mp.ErrCodeOK {
+		err = &result.Error
+		return
+	}
+	primaryIndustry = result.PrimaryIndustry
+	secondaryIndustry = result.SecondaryIndustry
+	return
+}
+
+// 获取模板列表
+func (clt *Client) GetAllPrivateTemplate() (templateList []Template, err error) {
+	var result struct {
+		mp.Error
+		TemplateList []Template `json:"template_list"`
+	}
+
+	incompleteURL := "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token="
+	if err = ((*mp.Client)(clt)).GetJSON(incompleteURL, &result); err != nil {
+		return
+	}
+
+	if result.ErrCode != mp.ErrCodeOK {
+		err = &result.Error
+		return
+	}
+	templateList = result.TemplateList
+	return
+}
+
+// 删除模板
+func (clt *Client) DeletePrivateTemplate(templateID string) (err error) {
+	if templateID == "" {
+		err = errors.New("empty templateID")
+		return
+	}
+	var request = struct {
+		TemplateID string `json:"template_id"`
+	}{
+		TemplateID: templateID,
+	}
+
+	var result struct {
+		mp.Error
+	}
+
+	incompleteURL := "https://api.weixin.qq.com/cgi-bin/template/del_private_template?access_token="
+	if err = ((*mp.Client)(clt)).PostJSON(incompleteURL, request, &result); err != nil {
+		return
+	}
+
+	if result.ErrCode != mp.ErrCodeOK {
+		err = &result.Error
+		return
+	}
+	return
+}

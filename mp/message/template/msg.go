@@ -17,3 +17,17 @@ type TemplateMessage struct {
 
 	RawJSONData json.RawMessage `json:"data"` // 必须, JSON 格式的 []byte, 满足特定的模板需求
 }
+
+type Template struct {
+	TemplateId      string `json:"template_id"`      //模板ID
+	Title           string `json:"title"`            //模板标题
+	PrimaryIndustry string `json:"primary_industry"` //模板所属行业的一级行业
+	DeputyIndustry  string `json:"deputy_industry"`  //模板所属行业的二级行业
+	Content         string `json:"content"`          //模板内容
+	Example         string `json:"example"`          //模板示例
+}
+
+type Industry struct {
+	FirstClass  string `json:"first_class"`
+	SecondClass string `json:"second_class"`
+}

@@ -9,13 +9,12 @@ package corp
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
 	"reflect"
 
-	wechatjson "github.com/chanxuehong/wechat/internal/json"
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 // 企业号"主动"请求功能的基本封装.
@@ -56,7 +55,7 @@ func (clt *Client) PostJSON(incompleteURL string, request interface{}, response 
 	buf.Reset()
 	defer textBufferPool.Put(buf)
 
-	if err = wechatjson.NewEncoder(buf).Encode(request); err != nil {
+	if err = json.NewEncoder(buf).Encode(request); err != nil {
 		return
 	}
 	requestBytes := buf.Bytes()

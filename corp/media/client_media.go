@@ -6,7 +6,6 @@
 package media
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -16,6 +15,7 @@ import (
 	"os"
 
 	"github.com/chanxuehong/wechat/corp"
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 // 下载多媒体到文件.

@@ -6,11 +6,12 @@
 package oauth2
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
 	"time"
+
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 type Token struct {

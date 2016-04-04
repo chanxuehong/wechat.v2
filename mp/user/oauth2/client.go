@@ -8,10 +8,11 @@
 package oauth2
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"net/http"
+
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 type TokenStorage interface {

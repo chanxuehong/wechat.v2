@@ -9,13 +9,13 @@ package suite
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"net/http"
 	"net/url"
 	"reflect"
 
 	"github.com/chanxuehong/wechat/corp"
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 type Client struct {

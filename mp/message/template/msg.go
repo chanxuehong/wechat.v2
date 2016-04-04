@@ -6,7 +6,7 @@
 package template
 
 import (
-	"encoding/json"
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 type TemplateMessage struct {

@@ -8,12 +8,12 @@
 package oauth2
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 
+	"github.com/chanxuehong/wechat/internal/json"
 	"github.com/chanxuehong/wechat/mp"
 )
 

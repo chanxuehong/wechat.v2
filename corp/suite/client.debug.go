@@ -9,7 +9,6 @@ package suite
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -17,6 +16,7 @@ import (
 	"reflect"
 
 	"github.com/chanxuehong/wechat/corp"
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 type Client struct {

@@ -9,7 +9,6 @@ package suite
 
 import (
 	"bytes"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -19,6 +18,7 @@ import (
 	"time"
 
 	"github.com/chanxuehong/wechat/corp"
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 // suite_access_token 中控服务器接口.

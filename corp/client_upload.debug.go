@@ -9,7 +9,6 @@ package corp
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -17,6 +16,8 @@ import (
 	"net/http"
 	"net/url"
 	"reflect"
+
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 type MultipartFormField struct {

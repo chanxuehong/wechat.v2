@@ -6,7 +6,7 @@
 package component
 
 import (
-	"encoding/json"
+	"github.com/chanxuehong/wechat/internal/json"
 	"github.com/chanxuehong/wechat/mp"
 )
 

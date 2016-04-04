@@ -9,13 +9,13 @@ package component
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"reflect"
 
+	"github.com/chanxuehong/wechat/internal/json"
 	"github.com/chanxuehong/wechat/mp"
 )
 

@@ -6,7 +6,7 @@
 package menu
 
 import (
-	"encoding/json"
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 const (

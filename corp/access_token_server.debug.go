@@ -8,7 +8,6 @@
 package corp
 
 import (
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -17,6 +16,8 @@ import (
 	"strconv"
 	"sync"
 	"time"
+
+	"github.com/chanxuehong/wechat/internal/json"
 )
 
 // access_token 中控服务器接口, see access_token_server.png

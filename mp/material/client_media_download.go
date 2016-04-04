@@ -7,7 +7,6 @@ package material
 
 import (
 	"bytes"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
@@ -15,6 +14,7 @@ import (
 	"net/url"
 	"os"
 
+	"github.com/chanxuehong/wechat/internal/json"
 	"github.com/chanxuehong/wechat/mp"
 )
 

@@ -1,4 +1,4 @@
-// Copyright 2010 The Go Authors.  All rights reserved.
+// Copyright 2010 The Go Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
@@ -54,6 +54,36 @@ func TestEncoder(t *testing.T) {
 			diff(t, []byte(have), []byte(want))
 			break
 		}
+	}
+}
+
+var streamEncodedIndent = `0.1
+"hello"
+null
+true
+false
+[
+>."a",
+>."b",
+>."c"
+>]
+{
+>."ß": "long s",
+>."K": "Kelvin"
+>}
+3.14
+`
+
+func TestEncoderIndent(t *testing.T) {
+	var buf bytes.Buffer
+	enc := NewEncoder(&buf)
+	enc.Indent(">", ".")
+	for _, v := range streamTest {
+		enc.Encode(v)
+	}
+	if have, want := buf.String(), streamEncodedIndent; have != want {
+		t.Error("indented encoding mismatch")
+		diff(t, []byte(have), []byte(want))
 	}
 }
 

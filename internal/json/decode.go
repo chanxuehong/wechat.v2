@@ -816,7 +816,48 @@ func (d *decodeState) literalStore(item []byte, v reflect.Value, fromQuoted bool
 		}
 		switch v.Kind() {
 		default:
-			d.saveError(&UnmarshalTypeError{"string", v.Type(), int64(d.off)})
+			// d.saveError(&UnmarshalTypeError{"string", v.Type(), int64(d.off)})
+			if len(s) <= 0 {
+				d.saveError(&UnmarshalTypeError{"string", v.Type(), int64(d.off)})
+				break
+			}
+			if c := s[0]; c != '-' && (c < '0' || c > '9') {
+				d.saveError(&UnmarshalTypeError{"string", v.Type(), int64(d.off)})
+				break
+			}
+			s := string(s)
+			if !isValidNumber(s) {
+				d.saveError(&UnmarshalTypeError{"string", v.Type(), int64(d.off)})
+				break
+			}
+			switch v.Kind() {
+			default:
+				d.saveError(&UnmarshalTypeError{"string", v.Type(), int64(d.off)})
+
+			case reflect.Int, reflect.Int8, reflect.Int16, reflect.Int32, reflect.Int64:
+				n, err := strconv.ParseInt(s, 10, 64)
+				if err != nil || v.OverflowInt(n) {
+					d.saveError(&UnmarshalTypeError{"string " + s, v.Type(), int64(d.off)})
+					break
+				}
+				v.SetInt(n)
+
+			case reflect.Uint, reflect.Uint8, reflect.Uint16, reflect.Uint32, reflect.Uint64, reflect.Uintptr:
+				n, err := strconv.ParseUint(s, 10, 64)
+				if err != nil || v.OverflowUint(n) {
+					d.saveError(&UnmarshalTypeError{"string " + s, v.Type(), int64(d.off)})
+					break
+				}
+				v.SetUint(n)
+
+			case reflect.Float32, reflect.Float64:
+				n, err := strconv.ParseFloat(s, v.Type().Bits())
+				if err != nil || v.OverflowFloat(n) {
+					d.saveError(&UnmarshalTypeError{"string " + s, v.Type(), int64(d.off)})
+					break
+				}
+				v.SetFloat(n)
+			}
 		case reflect.Slice:
 			if v.Type().Elem().Kind() != reflect.Uint8 {
 				d.saveError(&UnmarshalTypeError{"string", v.Type(), int64(d.off)})

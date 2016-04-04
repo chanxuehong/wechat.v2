@@ -227,9 +227,30 @@ func (CText) MarshalText() ([]byte, error) {
 	return []byte(`"<&>"`), nil
 }
 
+//func TestMarshalerEscaping(t *testing.T) {
+//	var c C
+//	want := `"\u003c\u0026\u003e"`
+//	b, err := Marshal(c)
+//	if err != nil {
+//		t.Fatalf("Marshal(c): %v", err)
+//	}
+//	if got := string(b); got != want {
+//		t.Errorf("Marshal(c) = %#q, want %#q", got, want)
+//	}
+//
+//	var ct CText
+//	want = `"\"\u003c\u0026\u003e\""`
+//	b, err = Marshal(ct)
+//	if err != nil {
+//		t.Fatalf("Marshal(ct): %v", err)
+//	}
+//	if got := string(b); got != want {
+//		t.Errorf("Marshal(ct) = %#q, want %#q", got, want)
+//	}
+//}
 func TestMarshalerEscaping(t *testing.T) {
 	var c C
-	want := `"\u003c\u0026\u003e"`
+	want := `"<&>"`
 	b, err := Marshal(c)
 	if err != nil {
 		t.Fatalf("Marshal(c): %v", err)
@@ -239,7 +260,7 @@ func TestMarshalerEscaping(t *testing.T) {
 	}
 
 	var ct CText
-	want = `"\"\u003c\u0026\u003e\""`
+	want = `"\"<&>\""`
 	b, err = Marshal(ct)
 	if err != nil {
 		t.Fatalf("Marshal(ct): %v", err)

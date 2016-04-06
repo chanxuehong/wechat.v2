@@ -11,6 +11,8 @@ import (
 	"strconv"
 )
 
+var jsonNumberType = reflect.TypeOf(json.Number(""))
+
 var trueLiteral = []byte("true")
 var falseLiteral = []byte("false")
 
@@ -127,5 +129,3 @@ func isValidNumberBytes(s []byte) bool {
 	// Make sure we are at the end.
 	return len(s) == 0
 }
-
-var jsonNumberType = reflect.TypeOf(json.Number(""))

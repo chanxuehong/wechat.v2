@@ -36,6 +36,6 @@
 
 ```
 1. hack.go:   新增 var jsonNumberType = reflect.TypeOf(json.Number(""))
-2. decode.go: 修改 531 行代码
+2. encode.go: 修改 531 行代码
 3. decode.go: 修改 853 行代码
 ```

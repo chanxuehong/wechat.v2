@@ -11,7 +11,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/chanxuehong/wechat/internal/json"
+	"github.com/chanxuehong/wechat/json"
 )
 
 type Token struct {

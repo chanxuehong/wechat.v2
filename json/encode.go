@@ -528,7 +528,7 @@ var (
 )
 
 func stringEncoder(e *encodeState, v reflect.Value, quoted bool) {
-	if v.Type() == numberType {
+	if vtype := v.Type(); vtype == numberType || vtype == jsonNumberType { // if v.Type() == numberType {
 		numStr := v.String()
 		// In Go1.5 the empty string encodes to "0", while this is not a valid number literal
 		// we keep compatibility so check validity after this.

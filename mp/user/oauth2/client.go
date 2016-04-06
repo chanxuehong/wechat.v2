@@ -12,7 +12,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/chanxuehong/wechat/internal/json"
+	"github.com/chanxuehong/wechat/json"
 )
 
 type TokenStorage interface {

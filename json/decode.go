@@ -850,7 +850,7 @@ func (d *decodeState) literalStore(item []byte, v reflect.Value, fromQuoted bool
 		s := string(item)
 		switch v.Kind() {
 		default:
-			if v.Kind() == reflect.String && v.Type() == numberType {
+			if vtype := v.Type(); v.Kind() == reflect.String && (vtype == numberType || vtype == jsonNumberType) { // if v.Kind() == reflect.String && v.Type() == numberType {
 				v.SetString(s)
 				if !isValidNumber(s) {
 					d.error(fmt.Errorf("json: invalid number literal, trying to unmarshal %q into Number", item))

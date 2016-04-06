@@ -6,6 +6,7 @@ package json
 
 import (
 	"bytes"
+	"encoding/json"
 	"reflect"
 	"strconv"
 )
@@ -126,3 +127,5 @@ func isValidNumberBytes(s []byte) bool {
 	// Make sure we are at the end.
 	return len(s) == 0
 }
+
+var jsonNumberType = reflect.TypeOf(json.Number(""))

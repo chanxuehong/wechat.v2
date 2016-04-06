@@ -13,7 +13,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/chanxuehong/wechat/internal/json"
+	"github.com/chanxuehong/wechat/json"
 	"github.com/chanxuehong/wechat/mp"
 )
 

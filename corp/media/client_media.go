@@ -15,7 +15,7 @@ import (
 	"os"
 
 	"github.com/chanxuehong/wechat/corp"
-	"github.com/chanxuehong/wechat/internal/json"
+	"github.com/chanxuehong/wechat/json"
 )
 
 // 下载多媒体到文件.

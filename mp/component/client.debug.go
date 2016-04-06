@@ -15,7 +15,7 @@ import (
 	"net/url"
 	"reflect"
 
-	"github.com/chanxuehong/wechat/internal/json"
+	"github.com/chanxuehong/wechat/json"
 	"github.com/chanxuehong/wechat/mp"
 )
 

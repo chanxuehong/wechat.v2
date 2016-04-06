@@ -17,7 +17,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/chanxuehong/wechat/internal/json"
+	"github.com/chanxuehong/wechat/json"
 	"github.com/chanxuehong/wechat/mp"
 )
 

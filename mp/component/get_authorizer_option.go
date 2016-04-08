@@ -6,8 +6,6 @@
 package component
 
 import (
-	"encoding/json"
-
 	"github.com/chanxuehong/wechat/mp"
 )
 
@@ -25,7 +23,7 @@ func (clt *Client) GetAuthorizerOption(authorizerAppId, optionName string) (opti
 
 	var result struct {
 		mp.Error
-		OptionValue json.Number `json:"option_value"`
+		OptionValue int `json:"option_value"`
 	}
 
 	incompleteURL := "https://api.weixin.qq.com/cgi-bin/component/api_get_authorizer_option?component_access_token="

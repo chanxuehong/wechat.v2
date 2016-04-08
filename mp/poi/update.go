@@ -18,7 +18,7 @@ import (
 // photo_list 传入A、B、C、D、E 五张图片的链接。
 type PoiUpdateParameters struct {
 	BaseInfo struct {
-		PoiId int64 `json:"poi_id,string"`
+		PoiId int64 `json:"poi_id"`
 
 		Telephone    string  `json:"telephone,omitempty"`    // 门店的电话(纯数字, 区号, 分机号均由"-"隔开)
 		PhotoList    []Photo `json:"photo_list,omitempty"`   // 图片列表, url 形式, 可以有多张图片, 尺寸为640*340px. 必须为上一接口生成的url

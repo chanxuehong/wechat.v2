@@ -12,7 +12,7 @@ import (
 // 删除门店.
 func (clt *Client) PoiDelete(poiId int64) (err error) {
 	var request = struct {
-		PoiId int64 `json:"poi_id,string"`
+		PoiId int64 `json:"poi_id"`
 	}{
 		PoiId: poiId,
 	}

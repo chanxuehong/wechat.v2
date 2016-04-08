@@ -11,9 +11,9 @@ import (
 
 type Poi struct {
 	BaseInfo struct {
-		PoiId          int64 `json:"poi_id,string,omitempty"` // Poi 的id, 只有审核通过后才有
-		AvailableState int   `json:"available_state"`         // 门店是否可用状态. 1 表示系统错误, 2 表示审核中, 3 审核通过, 4 审核驳回. 当该字段为1, 2, 4 状态时, poi_id 为空
-		UpdateStatus   int   `json:"update_status"`           // 扩展字段是否正在更新中. 1 表示扩展字段正在更新中, 尚未生效, 不允许再次更新; 0 表示扩展字段没有在更新中或更新已生效, 可以再次更新
+		PoiId          int64 `json:"poi_id,omitempty"` // Poi 的id, 只有审核通过后才有
+		AvailableState int   `json:"available_state"`  // 门店是否可用状态. 1 表示系统错误, 2 表示审核中, 3 审核通过, 4 审核驳回. 当该字段为1, 2, 4 状态时, poi_id 为空
+		UpdateStatus   int   `json:"update_status"`    // 扩展字段是否正在更新中. 1 表示扩展字段正在更新中, 尚未生效, 不允许再次更新; 0 表示扩展字段没有在更新中或更新已生效, 可以再次更新
 
 		Sid          string   `json:"sid,omitempty"`           // 商户自己的id, 用于后续审核通过收到poi_id 的通知时, 做对应关系. 请商户自己保证唯一识别性
 		BusinessName string   `json:"business_name,omitempty"` // 门店名称(仅为商户名, 如: 国美, 麦当劳, 不应包含地区, 店号等信息, 错误示例: 北京国美)
@@ -39,7 +39,7 @@ type Poi struct {
 // 查询门店信息.
 func (clt *Client) PoiGet(poiId int64) (poi *Poi, err error) {
 	var request = struct {
-		PoiId int64 `json:"poi_id,string"`
+		PoiId int64 `json:"poi_id"`
 	}{
 		PoiId: poiId,
 	}

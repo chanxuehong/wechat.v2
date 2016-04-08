@@ -5,10 +5,6 @@
 
 package menu
 
-import (
-	"encoding/json"
-)
-
 const (
 	MenuButtonCountLimit    = 3 // 一级菜单最多包含 3 个按钮
 	SubMenuButtonCountLimit = 5 // 二级菜单最多包含 5 个按钮
@@ -69,13 +65,13 @@ type Button struct {
 }
 
 type MatchRule struct {
-	GroupId            json.Number `json:"group_id,omitempty"`
-	Sex                json.Number `json:"sex,omitempty"`
-	Country            string      `json:"country,omitempty"`
-	Province           string      `json:"province,omitempty"`
-	City               string      `json:"city,omitempty"`
-	ClientPlatformType json.Number `json:"client_platform_type,omitempty"`
-	Language           string      `json:"language,omitempty"`
+	GroupId            *int64 `json:"group_id,omitempty"`
+	Sex                *int   `json:"sex,omitempty"`
+	Country            string `json:"country,omitempty"`
+	Province           string `json:"province,omitempty"`
+	City               string `json:"city,omitempty"`
+	ClientPlatformType *int   `json:"client_platform_type,omitempty"`
+	Language           string `json:"language,omitempty"`
 }
 
 // 设置 btn 指向的 Button 为 子菜单 类型按钮

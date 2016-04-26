@@ -6,6 +6,7 @@
 package dkf
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
 	"strconv"
@@ -16,10 +17,10 @@ import (
 
 // 客服基本信息
 type KfInfo struct {
-	Id           string `json:"kf_id"`         // 客服工号
-	Account      string `json:"kf_account"`    // 完整客服账号, 格式为: 账号前缀@公众号微信号
-	Nickname     string `json:"kf_nick"`       // 客服昵称
-	HeadImageURL string `json:"kf_headimgurl"` // 客服头像
+	Id           json.Number `json:"kf_id"`         // 客服工号
+	Account      string      `json:"kf_account"`    // 完整客服账号, 格式为: 账号前缀@公众号微信号
+	Nickname     string      `json:"kf_nick"`       // 客服昵称
+	HeadImageURL string      `json:"kf_headimgurl"` // 客服头像
 }
 
 var ErrNoHeadImage = errors.New("没有头像")
@@ -85,11 +86,11 @@ const (
 
 // 在线客服接待信息
 type OnlineKfInfo struct {
-	Id                  string `json:"kf_id"`         // 客服工号
-	Account             string `json:"kf_account"`    // 完整客服账号, 格式为: 账号前缀@公众号微信号
-	Status              int    `json:"status"`        // 客服在线状态 1: pc在线, 2: 手机在线. 若pc和手机同时在线则为 1+2=3
-	AutoAcceptThreshold int    `json:"auto_accept"`   // 客服设置的最大自动接入数
-	AcceptingNumber     int    `json:"accepted_case"` // 客服当前正在接待的会话数
+	Id                  json.Number `json:"kf_id"`         // 客服工号
+	Account             string      `json:"kf_account"`    // 完整客服账号, 格式为: 账号前缀@公众号微信号
+	Status              int         `json:"status"`        // 客服在线状态 1: pc在线, 2: 手机在线. 若pc和手机同时在线则为 1+2=3
+	AutoAcceptThreshold int         `json:"auto_accept"`   // 客服设置的最大自动接入数
+	AcceptingNumber     int         `json:"accepted_case"` // 客服当前正在接待的会话数
 }
 
 // 获取在线客服接待信息.

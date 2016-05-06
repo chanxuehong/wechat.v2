@@ -16,7 +16,7 @@ const (
 	MsgTypeVoice    = "voice"    // 语音消息
 	MsgTypeVideo    = "video"    // 视频消息
 	MsgTypeLocation = "location" // 地理位置消息
-	MsgTypeLink = "link" // 连接消息
+	MsgTypeLink     = "link"     // 连接消息
 )
 
 type Text struct {
@@ -34,23 +34,23 @@ func GetText(msg *corp.MixedMessage) *Text {
 		Content:       msg.Content,
 	}
 }
+
 type Link struct {
 	XMLName struct{} `xml:"xml" json:"-"`
 	corp.MessageHeader
-	MsgId   int64  `xml:"MsgId"   json:"MsgId"`   // 消息id, 64位整型
-	Title   string `xml:"Title" json:"Title"` // 文本消息内容
-        Description string `xml:"Description" json:"Description"`
-       Url string  `xml:"Url" json:"Url"`
+	MsgId       int64  `xml:"MsgId"   json:"MsgId"` // 消息id, 64位整型
+	Title       string `xml:"Title" json:"Title"`   // 文本消息内容
+	Description string `xml:"Description" json:"Description"`
+	URL         string `xml:"Url" json:"Url"`
 }
-
 
 func GetLink(msg *corp.MixedMessage) *Link {
 	return &Link{
 		MessageHeader: msg.MessageHeader,
 		MsgId:         msg.MsgId,
 		Title:         msg.Title,
-		Description:  msg.Description,
-		Url:          msg.Url,
+		Description:   msg.Description,
+		URL:           msg.URL,
 	}
 }
 

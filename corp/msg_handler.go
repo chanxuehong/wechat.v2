@@ -66,6 +66,10 @@ type MixedMessage struct {
 	LocationY    float64 `xml:"Location_Y"   json:"Location_Y"`
 	Scale        int     `xml:"Scale"        json:"Scale"`
 	Label        string  `xml:"Label"        json:"Label"`
+ 
+        Title   string `xml:"Title" json:"Title"` // 文本消息内容
+        Description string `xml:"Description" json:"Description"`
+       Url string  `xml:"Url" json:"Url"`
 
 	Event    string `xml:"Event"    json:"Event"`
 	EventKey string `xml:"EventKey" json:"EventKey"`

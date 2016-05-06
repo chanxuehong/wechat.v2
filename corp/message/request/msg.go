@@ -38,10 +38,10 @@ func GetText(msg *corp.MixedMessage) *Text {
 type Link struct {
 	XMLName struct{} `xml:"xml" json:"-"`
 	corp.MessageHeader
-	MsgId       int64  `xml:"MsgId"   json:"MsgId"` // 消息id, 64位整型
-	Title       string `xml:"Title" json:"Title"`   // 文本消息内容
+	MsgId       int64  `xml:"MsgId"       json:"MsgId"` // 消息id, 64位整型
+	Title       string `xml:"Title"       json:"Title"` // 文本消息内容
 	Description string `xml:"Description" json:"Description"`
-	URL         string `xml:"Url" json:"Url"`
+	URL         string `xml:"Url"         json:"Url"`
 }
 
 func GetLink(msg *corp.MixedMessage) *Link {

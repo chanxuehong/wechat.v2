@@ -67,9 +67,9 @@ type MixedMessage struct {
 	Scale        int     `xml:"Scale"        json:"Scale"`
 	Label        string  `xml:"Label"        json:"Label"`
 
-	Title       string `xml:"Title" json:"Title"` // 文本消息内容
+	Title       string `xml:"Title"       json:"Title"` // 文本消息内容
 	Description string `xml:"Description" json:"Description"`
-	URL         string `xml:"Url" json:"Url"`
+	URL         string `xml:"Url"         json:"Url"`
 
 	Event    string `xml:"Event"    json:"Event"`
 	EventKey string `xml:"EventKey" json:"EventKey"`

@@ -70,6 +70,23 @@ type ArticleTotalData struct {
 		StatDate   string `json:"stat_date"`   // 统计的日期, 在getarticletotal接口中, ref_date指的是文章群发出日期,  而stat_date是数据统计日期
 		TargetUser int    `json:"target_user"` // 送达人数, 一般约等于总粉丝数(需排除黑名单或其他异常情况下无法收到消息的粉丝)
 		ArticleBaseData
+
+		IntPageFromSessionReadUser  int `json:"int_page_from_session_read_user"`   // 公众号会话阅读人数
+		IntPageFromSessionReadCount int `json:"int_page_from_session_read_count"`  // 公众号会话阅读次数
+		IntPageFromHistMsgReadUser  int `json:"int_page_from_hist_msg_read_user"`  // 历史消息页阅读人数
+		IntPageFromHistMsgReadCount int `json:"int_page_from_hist_msg_read_count"` // 历史消息页阅读次数
+		IntPageFromFeedReadUser     int `json:"int_page_from_feed_read_user"`      // 朋友圈阅读人数
+		IntPageFromFeedReadCount    int `json:"int_page_from_feed_read_count"`     // 朋友圈阅读次数
+		IntPageFromFriendsReadUser  int `json:"int_page_from_friends_read_user"`   // 好友转发阅读人数
+		IntPageFromFriendsReadCount int `json:"int_page_from_friends_read_count"`  // 好友转发阅读次数
+		IntPageFromOtherReadUser    int `json:"int_page_from_other_read_user"`     // 其他场景阅读人数
+		IntPageFromOtherReadCount   int `json:"int_page_from_other_read_count"`    // 其他场景阅读次数
+		FeedShareFromSessionUser    int `json:"feed_share_from_session_user"`      // 公众号会话转发朋友圈人数
+		FeedShareFromSessionCnt     int `json:"feed_share_from_session_cnt"`       // 公众号会话转发朋友圈次数
+		FeedShareFromFeedUser       int `json:"feed_share_from_feed_user"`         // 朋友圈转发朋友圈人数
+		FeedShareFromFeedCnt        int `json:"feed_share_from_feed_cnt"`          // 朋友圈转发朋友圈次数
+		FeedShareFromOtherUser      int `json:"feed_share_from_other_user"`        // 其他场景转发朋友圈人数
+		FeedShareFromOtherCnt       int `json:"feed_share_from_other_cnt"`         // 其他场景转发朋友圈次数
 	} `json:"details"`
 }
 

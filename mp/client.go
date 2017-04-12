@@ -10,9 +10,11 @@ package mp
 import (
 	"bytes"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"reflect"
+	"strings"
 
 	"github.com/chanxuehong/wechat/json"
 )
@@ -78,7 +80,24 @@ RETRY:
 		return fmt.Errorf("http.Status: %s", httpResp.Status)
 	}
 
+	var bodyBytes []byte
+	if httpResp.Body != nil {
+		bodyBytes, _ = ioutil.ReadAll(httpResp.Body)
+	}
+	httpResp.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
+
 	if err = json.NewDecoder(httpResp.Body).Decode(response); err != nil {
+		if err = json.NewDecoder(httpResp.Body).Decode(response); err != nil {
+			if !strings.Contains(err.Error(), "invalid character '") && !strings.Contains(err.Error(), "json: cannot unmarshal") {
+				LogInfoln("[WeChat JSON Error] ", err.Error())
+				return
+			} else {
+				if err = json.Unmarshal(EscapeCtrl(bodyBytes), response); err != nil {
+					LogInfoln("[WeChat JSON Error After EscapeCtrl] ", err.Error())
+					return
+				}
+			}
+		}
 		return
 	}
 
@@ -148,8 +167,21 @@ RETRY:
 		return fmt.Errorf("http.Status: %s", httpResp.Status)
 	}
 
+	var bodyBytes []byte
+	if httpResp.Body != nil {
+		bodyBytes, _ = ioutil.ReadAll(httpResp.Body)
+	}
+	httpResp.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
 	if err = json.NewDecoder(httpResp.Body).Decode(response); err != nil {
-		return
+		if !strings.Contains(err.Error(), "invalid character '") && !strings.Contains(err.Error(), "json: cannot unmarshal") {
+			LogInfoln("[WeChat JSON Error] ", err.Error())
+			return
+		} else {
+			if err = json.Unmarshal(EscapeCtrl(bodyBytes), response); err != nil {
+				LogInfoln("[WeChat JSON Error After EscapeCtrl] ", err.Error())
+				return
+			}
+		}
 	}
 
 	var ErrorStructValue reflect.Value // Error

@@ -7,6 +7,7 @@ package mp
 
 import (
 	"encoding/base64"
+	"encoding/hex"
 	"encoding/xml"
 	"errors"
 	"net/http"
@@ -14,6 +15,28 @@ import (
 
 	"github.com/chanxuehong/wechat/internal/util"
 )
+
+// 转义微信中的错误编码，防止json decode的时候出错
+func EscapeCtrl(ctrl []byte) (esc []byte) {
+	u := []byte(`\u0000`)
+	for i, ch := range ctrl {
+		if ch <= 31 {
+			if esc == nil {
+				esc = append(make([]byte, 0, len(ctrl)+len(u)), ctrl[:i]...)
+			}
+			esc = append(esc, u...)
+			hex.Encode(esc[len(esc)-2:], ctrl[i:i+1])
+			continue
+		}
+		if esc != nil {
+			esc = append(esc, ch)
+		}
+	}
+	if esc == nil {
+		return ctrl
+	}
+	return esc
+}
 
 // 明文模式下回复消息给微信服务器.
 //  要求 msg 是有效的消息数据结构(经过 encoding/xml marshal 后符合微信消息格式);
